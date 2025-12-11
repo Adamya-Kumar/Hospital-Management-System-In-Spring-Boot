@@ -1,0 +1,91 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PatientRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.codingshuttle.HospitalyManagementSystem.repository</a>
+</div>
+
+<h1>Coverage Summary for Class: PatientRepository (com.codingshuttle.HospitalyManagementSystem.repository)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">PatientRepository</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.codingshuttle.HospitalyManagementSystem.repository;
+&nbsp;
+&nbsp;import com.codingshuttle.HospitalyManagementSystem.dto.BloodGroupStatus;
+&nbsp;import com.codingshuttle.HospitalyManagementSystem.dto.CPatientInfo;
+&nbsp;import com.codingshuttle.HospitalyManagementSystem.dto.IPatientInfo;
+&nbsp;import com.codingshuttle.HospitalyManagementSystem.entity.Patient;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.data.jpa.repository.Query;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;public interface PatientRepository extends JpaRepository&lt;Patient,Long&gt; {
+&nbsp;
+&nbsp;    @Query(&quot;select p.id as id,p.name as name, p.email as email from Patient p&quot;)
+&nbsp;    List&lt;IPatientInfo&gt; getAllPatientInfo();
+&nbsp;
+&nbsp;    @Query(&quot;SELECT new com.codingshuttle.HospitalyManagementSystem.dto.CPatientInfo(p.id,p.name) FROM Patient p&quot;)
+&nbsp;    List&lt;CPatientInfo&gt; getAllPatientInfoConcrete();
+&nbsp;
+&nbsp;    @Query(&quot;SELECT new com.codingshuttle.HospitalyManagementSystem.dto.BloodGroupStatus(p.bloodGroup,COUNT(p)) &quot; +
+&nbsp;            &quot;from Patient p group by p.bloodGroup order by COUNT(p)&quot;)
+&nbsp;    List&lt;BloodGroupStatus&gt; getAllPatientStatus();
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-12-09 17:25</div>
+</div>
+</body>
+</html>
